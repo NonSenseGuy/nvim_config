@@ -8,6 +8,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'nvim-lua/completion-nvim'
 "GO:
 Plug 'fatih/vim-go'
+"Plug 'ray-x/go.nvim'
 "FuzzyFinder:
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -65,6 +66,9 @@ set signcolumn=yes
 :lua << EOF
   local nvim_lsp = require('lspconfig')
 
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+
   local on_attach = function(client, bufnr)
     require('completion').on_attach()
 
@@ -93,19 +97,32 @@ set signcolumn=yes
 
     -- Set some keybinds conditional on server capabilities
     if client.resolved_capabilities.document_formatting then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        buf_set_keymap("n", "ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     elseif client.resolved_capabilities.document_range_formatting then
-        buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        buf_set_keymap("n", "ff", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
     end
 
  end
 
-  local servers = {'pyright', 'gopls', 'rust_analyzer'}
-  for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-      on_attach = on_attach,
-    }
-  end
+ nvim_lsp.gopls.setup{
+    cmd = {'gopls', '--remote=auto'},
+    capabilities = capabilities,
+    settings = {
+        gopls = {
+            experimentalPostfixCompletions = true,
+            analyses = {
+                unusedparams = true,
+                shadow = true,
+            },
+            staticcheck = true,
+        }    
+    },
+
+    on_attach = on_attach,
+}
+
+
+
 EOF
 
 " Completion
@@ -162,4 +179,12 @@ if has("autocmd")
 endif
 
 
+"MOUSE:
+"------
+"Allow using mouse helpful for switching/resizing windows
+set mouse+=a
+if &term =~ '^screen'
+  " tmux knows the extended mouse mode
+  set ttymouse=xterm2
+endif
 
