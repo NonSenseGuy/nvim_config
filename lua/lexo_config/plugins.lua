@@ -22,30 +22,22 @@ return require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     use 'numToStr/Comment.nvim'
 
-    --[[     use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
-        config = function()
-            vim.cmd('colorscheme rose-pine')
-        end
-    }) ]]
-
-
-    use 'folke/tokyonight.nvim'
+    use 'rose-pine/neovim'
+    use 'xiyaowong/transparent.nvim'
 
     use 'kyazdani42/nvim-tree.lua'
 
     use {
         'nvim-lualine/lualine.nvim',
-        requires = { 'nvim-tree/nvim-web-devicons', opt = true }
+        requires = {
+            'linrongbin16/lsp-progress.nvim',
+            'nvim-tree/nvim-web-devicons',
+            opt = true,
+        }
     }
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('tpope/vim-fugitive')
-
-    use({
-        'j-hui/fidget.nvim', tag = 'legacy'
-    })
 
     use {
         'VonHeikemen/lsp-zero.nvim',
@@ -78,10 +70,16 @@ return require('packer').startup(function(use)
         }
     }
 
+    use {
+        'ray-x/go.nvim',
+        requires = {
+            'ray-x/guihua.lua'
+        }
+    }
+
     use 'mfussenegger/nvim-dap'
     use 'rcarriga/nvim-dap-ui'
     use 'theHamsta/nvim-dap-virtual-text'
-    use 'ray-x/go.nvim'
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'nvim-orgmode/orgmode'
     use 'windwp/nvim-autopairs'

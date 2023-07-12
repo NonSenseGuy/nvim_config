@@ -45,7 +45,7 @@ require('nvim-tree').setup({
         side = 'left',
     },
     filters = {
-        dotfiles = true,
+        dotfiles = false,
         custom = {
             '^node_modules/', '^.git', '^.cache/', '%.o'
         }

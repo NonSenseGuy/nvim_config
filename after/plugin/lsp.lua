@@ -1,6 +1,5 @@
 require("neodev").setup()
 local null_ls = require("null-ls")
-local fidget = require("fidget")
 local lsp = require("lsp-zero").preset({})
 
 
@@ -15,6 +14,8 @@ mason_lsp.setup({
         "rust_analyzer",
         "gopls",
         "pyright",
+        "tailwindcss",
+        "svelte"
     }
 })
 
@@ -24,7 +25,7 @@ lsp.on_attach(function(client, bufnr)
         return { desc = 'LSP: ' .. desc, buffer = bufnr, remap = false }
     end
 
-    vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+    vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, opts('[F]ormat Document'))
     vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", opts('[G]o to [D]efinition'))
     vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts('[G]o to [R]eference'))
     vim.keymap.set("n", "<leader>fd", "<cmd>Telescope diagnostics<cr>", opts('[F]ind [D]iagnostics'))
@@ -52,7 +53,7 @@ lsp.format_on_save({
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
         ['eslint'] = { 'javascript', 'typescript' },
-        ['null-ls'] = { 'go', 'python', 'javascript', 'typescript' },
+        ['null-ls'] = { 'go', 'python', 'javascript', 'typescript', 'html' },
     }
 })
 
@@ -79,7 +80,6 @@ null_ls.setup({
     },
 })
 
-fidget.setup({})
 lsp.setup()
 
 -- AUTOCOMPLETION

@@ -1,7 +1,7 @@
 require('lualine').setup {
     options = {
         icons_enabled = true,
-        theme = 'tokyonight',
+        theme = 'rose-pine',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
@@ -20,7 +20,7 @@ require('lualine').setup {
     sections = {
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'filename' },
+        lualine_c = { 'filename', "require('lsp-progress').progress()" },
         lualine_x = { 'filetype' },
         lualine_y = { 'progress' },
         lualine_z = { 'location' }
@@ -38,3 +38,10 @@ require('lualine').setup {
     inactive_winbar = {},
     extensions = {}
 }
+
+vim.cmd([[
+augroup lualine_augroup
+    autocmd!
+    autocmd User LspProgressStatusUpdated lua require("lualine").refresh()
+augroup END
+]])
