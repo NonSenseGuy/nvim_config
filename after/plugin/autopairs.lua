@@ -3,3 +3,7 @@ require('nvim-autopairs').setup({
     disable_filetype = { "TelescopePrompt" },
     ignored_next_char = [=[[%w%%%'%[%"%.%`%$]]=],
 })
+
+require('nvim-ts-autotag').setup({
+    check_ts = true,
+})

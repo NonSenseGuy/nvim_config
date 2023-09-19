@@ -8,14 +8,12 @@ local mason_lsp = require("mason-lspconfig")
 
 mason_lsp.setup({
     ensure_installed = {
-        "eslint",
         "tsserver",
         "lua_ls",
         "rust_analyzer",
         "gopls",
         "pyright",
         "tailwindcss",
-        "svelte"
     }
 })
 
@@ -37,12 +35,12 @@ lsp.on_attach(function(client, bufnr)
     end, opts('[R]e[n]ame'))
 end)
 
-require('lspconfig').tsserver.setup({
-    on_init = function(client)
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentFormattingRangeProvider = false
-    end
-})
+-- require('lspconfig').tsserver.setup({
+--     on_init = function(client)
+--         client.server_capabilities.documentFormattingProvider = false
+--         client.server_capabilities.documentFormattingRangeProvider = false
+--     end
+-- })
 
 lsp.format_on_save({
     format_opts = {
@@ -52,7 +50,7 @@ lsp.format_on_save({
     servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
-        ['eslint'] = { 'javascript', 'typescript' },
+        ['tsserver'] = { 'javascript', 'typescript' },
         ['null-ls'] = { 'go', 'python', 'javascript', 'typescript', 'html' },
     }
 })
@@ -75,8 +73,7 @@ null_ls.setup({
         null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.black,
         null_ls.builtins.formatting.goimports,
-        null_ls.builtins.formatting.eslint_d,
-        null_ls.builtins.formatting.prettierd,
+        -- null_ls.builtins.formatting.prettierd,
     },
 })
 

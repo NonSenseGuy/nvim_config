@@ -83,6 +83,7 @@ return require('packer').startup(function(use)
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'nvim-orgmode/orgmode'
     use 'windwp/nvim-autopairs'
+    use 'windwp/nvim-ts-autotag'
 
     use {
         "folke/which-key.nvim",

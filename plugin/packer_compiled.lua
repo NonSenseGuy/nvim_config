@@ -129,6 +129,11 @@ _G.packer_plugins = {
     path = "/home/lexo/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
+  ["lsp-progress.nvim"] = {
+    loaded = true,
+    path = "/home/lexo/.local/share/nvim/site/pack/packer/start/lsp-progress.nvim",
+    url = "https://github.com/linrongbin16/lsp-progress.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/lexo/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -208,6 +213,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/lexo/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-ts-autotag"] = {
+    loaded = true,
+    path = "/home/lexo/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
