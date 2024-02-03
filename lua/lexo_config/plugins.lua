@@ -23,7 +23,9 @@ return require('packer').startup(function(use)
     use 'numToStr/Comment.nvim'
 
     -- use "ellisonleao/gruvbox.nvim"
-    use "rebelot/kanagawa.nvim"
+    -- use "rebelot/kanagawa.nvim"
+    use "themercorp/themer.lua"
+
     use 'xiyaowong/transparent.nvim'
 
     use 'kyazdani42/nvim-tree.lua'
