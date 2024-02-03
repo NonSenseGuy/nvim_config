@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.1',
+        'nvim-telescope/telescope.nvim', tag = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
@@ -22,7 +22,8 @@ return require('packer').startup(function(use)
     use 'lukas-reineke/indent-blankline.nvim'
     use 'numToStr/Comment.nvim'
 
-    use 'rose-pine/neovim'
+    -- use "ellisonleao/gruvbox.nvim"
+    use "rebelot/kanagawa.nvim"
     use 'xiyaowong/transparent.nvim'
 
     use 'kyazdani42/nvim-tree.lua'
@@ -81,16 +82,17 @@ return require('packer').startup(function(use)
     use 'rcarriga/nvim-dap-ui'
     use 'theHamsta/nvim-dap-virtual-text'
     use 'jose-elias-alvarez/null-ls.nvim'
-    use 'nvim-orgmode/orgmode'
     use 'windwp/nvim-autopairs'
     use 'windwp/nvim-ts-autotag'
+    use 'kylechui/nvim-surround'
+    use 'petobens/poet-v'
 
     use {
-        "folke/which-key.nvim",
+        'folke/which-key.nvim',
         config = function()
             vim.o.timeout = true
             vim.o.timeoutlen = 300
-            require("which-key").setup {
+            require('which-key').setup {
                 -- your configuration comes here
                 -- or leave it empty to use the default settings
                 -- refer to the configuration section below
