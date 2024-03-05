@@ -1,3 +1,7 @@
+vim.opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
+vim.opt.shortmess:append 'c'
+
 return {
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -28,13 +32,15 @@ return {
       --    you can use this plugin to help you. It even has snippets
       --    for various frameworks/libraries/etc. but you will have to
       --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+      'rafamadriz/friendly-snippets',
+      'onsails/lspkind.nvim',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
       luasnip.config.setup {}
+      local lspkind = require 'lspkind'
 
       cmp.setup {
         snippet = {
@@ -53,6 +59,9 @@ return {
           ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
+
+          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-f>'] = cmp.mapping.scroll_docs(4),
 
           -- Accept ([y]es) the completion.
           --  This will auto-import if your LSP supports it.
@@ -87,6 +96,22 @@ return {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+        },
+        formatting = {
+          fields = { 'abbr', 'kind', 'menu' },
+          format = lspkind.cmp_format {
+            mode = 'symbol_text',
+            menu = {
+              buffer = '[buf]',
+              nvim_lsp = '[lsp]',
+              path = '[path]',
+              luasnip = '[snip]',
+            },
+            before = function(entry, vim_item)
+              vim_item.dup = ({ luasnip = 0 })[entry.source.name] or 0
+              return vim_item
+            end,
+          },
         },
       }
     end,
