@@ -12,7 +12,7 @@ return {
       vim.keymap.set('n', '<leader>ng', '<cmd>Neogit<cr>', { desc = '[n]eo[g]it' }),
     },
   },
-  { 'akinsho/git-conflict.nvim', version = '*', config = true },
+  -- { 'akinsho/git-conflict.nvim', version = '*', config = true },
   {
     'lewis6991/gitsigns.nvim',
     event = 'BufReadPre',
