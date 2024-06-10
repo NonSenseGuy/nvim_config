@@ -70,4 +70,9 @@ opt.expandtab = true
 opt.smartindent = true
 
 opt.showbreak = '↳ ' -- prefix at the start when lines have been wrapped
+
+opt.shortmess:append 'c' -- don't show dumb autocompletes
+opt.swapfile = false
+
+opt.conceallevel = 1
 --  ts=2 sts=2 sw=2 et
