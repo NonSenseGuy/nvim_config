@@ -31,9 +31,10 @@ return {
       preview_config = { border = 'rounded' },
       current_line_blame_opts = {
         delay = 250,
+        virt_text = true,
         virt_text_pos = 'eol',
       },
-      current_line_blame_formatter_opts = { relative_time = false },
+      current_line_blame_formatter = '<author>, <author_time:%R> - <summary>',
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 

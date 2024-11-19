@@ -110,7 +110,6 @@ return {
           { name = 'luasnip' },
           { name = 'path' },
           { name = 'buffer' },
-          { name = 'copilot' },
         },
         formatting = {
           fields = { 'abbr', 'kind', 'menu' },
@@ -121,7 +120,6 @@ return {
               nvim_lsp = '[lsp]',
               path = '[path]',
               luasnip = '[snip]',
-              copilot = '[copilot]',
             },
             before = function(entry, vim_item)
               vim_item.dup = ({ luasnip = 0 })[entry.source.name] or 0
